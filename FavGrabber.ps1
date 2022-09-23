@@ -34,7 +34,6 @@ Function cleanUri($uriList)
 {
     foreach ($uri in $uriList)
     {
-        #$uri.split('/')[2]
         # Split up the string based on the / char and grab the 2nd element of that array, the server name
         $i = $uri.split('/')[2]
         # Get rid of port numbers and show the output
@@ -79,16 +78,14 @@ Function cleanWinFavs($favs)
 {
     foreach ($fav in $favs)
     {
-        #$fav
-        $i = $fav | Resolve-ShortcutFile
-        $i.url
+        ($fav | Resolve-ShortcutFile).url
     }
 }
 
 # Capture Chrome favorites
 foreach ($user in $userDirs.name)
 {
-    #$target = $usersPath\$user\$chromePath\$chromeFile
+
     If (Test-Path $usersPath\$user\$chromePath\$chromeFile)
     {
         #Write-Output "Found Chrome favorites for $user!!!"
@@ -116,9 +113,6 @@ foreach ($user in $userDirs.name)
             $count = $count + $cleanWin.count
             $list = $list + $cleanWin
         }
-        #$fileCount = $files.count
-        #$files
-        #Write-Output "Found Windows $fileCount favorites folder for $user!!!"
     }
 }
 
